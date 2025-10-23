@@ -55,7 +55,7 @@ DOCDB_TLS_CA_FILE=/path/to/ca-bundle.pem
 
 ### Locust Configuration
 
-You can customize Locust settings in `config/locust.conf` or via command-line arguments.
+You can customize Locust settings via command-line arguments or environment variables.
 
 ## Usage
 
@@ -92,12 +92,6 @@ Run tests without the web UI:
 
 ```bash
 locust -f locustfile.py --headless --users 10 --spawn-rate 1 --run-time 5m
-```
-
-### Using Configuration File
-
-```bash
-locust -f locustfile.py --config=config/locust.conf
 ```
 
 ### Distributed Load Testing

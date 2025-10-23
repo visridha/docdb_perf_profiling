@@ -151,8 +151,7 @@ docdb_perf_profiling/
 │   ├── utils/                         # Utility modules
 │   │   └── data_generator.py          # Test data generation
 │   ├── config/                        # Configuration files
-│   │   ├── .env.example               # Environment template
-│   │   └── locust.conf                # Locust configuration
+│   │   └── .env.example               # Environment template
 │   └── examples/                      # Example scripts
 │       └── data_generation_example.py
 ├── ycsb/                              # YCSB benchmarks
