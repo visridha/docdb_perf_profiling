@@ -20,7 +20,7 @@ class DocumentDBClient:
     A wrapper client for DocumentDB operations to be used with Locust.
     """
     
-    def __init__(self, host, port=27017, username=None, password=None, 
+    def __init__(self, host, port=10260, username=None, password=None, 
                  database="test", tls=True, tls_ca_file=None, 
                  retry_writes=False, read_preference="primary"):
         """
@@ -28,7 +28,7 @@ class DocumentDBClient:
         
         Args:
             host: DocumentDB cluster endpoint
-            port: Port number (default: 27017)
+            port: Port number (default: 10260)
             username: Database username
             password: Database password
             database: Database name to use
@@ -91,7 +91,7 @@ class DocumentDBUser(User):
         
         # Get configuration from environment variables
         self.host = os.getenv("DOCDB_HOST", "localhost")
-        self.port = int(os.getenv("DOCDB_PORT", "27017"))
+        self.port = int(os.getenv("DOCDB_PORT", "10260"))
         self.username = os.getenv("DOCDB_USERNAME")
         self.password = os.getenv("DOCDB_PASSWORD")
         self.database = os.getenv("DOCDB_DATABASE", "testdb")

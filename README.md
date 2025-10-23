@@ -1,20 +1,21 @@
 # DocumentDB Performance Profiling
 
-Performance testing templates and workloads for AWS DocumentDB and MongoDB-compatible databases.
+Performance testing templates and workloads for DocumentDB and MongoDB-compatible databases.
 
 ## Overview
 
 This repository provides production-ready performance testing templates for DocumentDB using various performance drivers. Currently includes comprehensive Locust-based templates with more drivers planned for the future.
 
-## Available Templates
+## Available Benchmarks
 
-### Locust Templates
+### Locust
 Comprehensive Locust-based performance testing framework for DocumentDB with multiple workload scenarios.
 
-📁 **Location**: `locust_templates/`
+📁 **Location**: `locust/`
 
 **Features:**
 - Multiple pre-built test scenarios (read-heavy, write-heavy, mixed workloads)
+- Simple load and query workload with ~1KB documents
 - Environment-based configuration
 - Realistic data generators
 - Distributed testing support
@@ -26,7 +27,7 @@ Comprehensive Locust-based performance testing framework for DocumentDB with mul
 pip install -r requirements.txt
 
 # Configure environment
-cd locust_templates
+cd locust
 cp config/.env.example .env
 # Edit .env with your DocumentDB credentials
 
@@ -34,7 +35,21 @@ cp config/.env.example .env
 locust -f locustfile.py
 ```
 
-See [locust_templates/README.md](locust_templates/README.md) for detailed documentation.
+See [locust/README.md](locust/README.md) for detailed documentation.
+
+### YCSB
+Yahoo! Cloud Serving Benchmark templates for DocumentDB.
+
+📁 **Location**: `ycsb/`
+
+Templates and workloads for YCSB benchmarking will be added here. See [ycsb/README.md](ycsb/README.md) for more information.
+
+### TPC-C
+TPC-C OLTP benchmark templates for DocumentDB.
+
+📁 **Location**: `tpcc/`
+
+Templates and workloads for TPC-C benchmarking will be added here. See [tpcc/README.md](tpcc/README.md) for more information.
 
 ## Test Scenarios
 
@@ -49,7 +64,7 @@ The following workload scenarios are available:
 
 - Python 3.7+
 - DocumentDB cluster or MongoDB-compatible database
-- AWS DocumentDB TLS certificate (for AWS deployments)
+- TLS certificate (if using TLS/SSL)
 
 ## Installation
 
@@ -66,18 +81,20 @@ pip install -r requirements.txt
 
 1. Copy the example environment file:
 ```bash
-cp locust_templates/config/.env.example locust_templates/.env
+cp locust/config/.env.example locust/.env
 ```
 
 2. Edit `.env` with your DocumentDB connection details:
 ```env
-DOCDB_HOST=your-cluster.cluster-xxxxx.region.docdb.amazonaws.com
+DOCDB_HOST=localhost
+DOCDB_PORT=10260
 DOCDB_USERNAME=your_username
 DOCDB_PASSWORD=your_password
 ```
 
-3. Download TLS certificate (for AWS DocumentDB):
+3. Download TLS certificate (if required):
 ```bash
+# For AWS-hosted DocumentDB, use:
 wget https://truststore.pki.rds.amazonaws.com/global/global-bundle.pem
 ```
 
@@ -121,19 +138,27 @@ locust -f locustfile.py --worker --master-host=<master-ip>
 ```
 docdb_perf_profiling/
 ├── README.md                          # This file
+├── QUICKSTART.md                      # Quick start guide
 ├── requirements.txt                   # Python dependencies
-├── locust_templates/                  # Locust performance templates
+├── locust/                            # Locust performance templates
 │   ├── README.md                      # Locust documentation
 │   ├── locustfile.py                  # Main locust file
 │   ├── scenarios/                     # Test scenarios
 │   │   ├── read_heavy.py              # Read-intensive workload
 │   │   ├── write_heavy.py             # Write-intensive workload
-│   │   └── mixed_workload.py          # Mixed CRUD workload
+│   │   ├── mixed_workload.py          # Mixed CRUD workload
+│   │   └── simple_load_query.py       # Simple load & query by _id
 │   ├── utils/                         # Utility modules
 │   │   └── data_generator.py          # Test data generation
-│   └── config/                        # Configuration files
-│       ├── .env.example               # Environment template
-│       └── locust.conf                # Locust configuration
+│   ├── config/                        # Configuration files
+│   │   ├── .env.example               # Environment template
+│   │   └── locust.conf                # Locust configuration
+│   └── examples/                      # Example scripts
+│       └── data_generation_example.py
+├── ycsb/                              # YCSB benchmarks
+│   └── README.md                      # YCSB documentation
+├── tpcc/                              # TPC-C benchmarks
+│   └── README.md                      # TPC-C documentation
 └── LICENSE
 ```
 
@@ -224,7 +249,7 @@ See [LICENSE](LICENSE) file for details.
 
 ## Resources
 
-- [AWS DocumentDB Documentation](https://docs.aws.amazon.com/documentdb/)
+- [DocumentDB GitHub](https://github.com/documentdb/documentdb)
 - [Locust Documentation](https://docs.locust.io/)
 - [PyMongo Documentation](https://pymongo.readthedocs.io/)
 

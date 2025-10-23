@@ -1,6 +1,6 @@
 # DocumentDB Locust Performance Templates
 
-This directory contains performance testing templates for AWS DocumentDB using Locust.
+This directory contains performance testing templates for DocumentDB using Locust.
 
 ## Overview
 
@@ -15,7 +15,7 @@ These templates provide ready-to-use performance test scenarios for DocumentDB, 
 
 1. Python 3.7 or higher
 2. DocumentDB cluster (or MongoDB compatible database)
-3. Access credentials and TLS certificate (if using AWS DocumentDB)
+3. Access credentials and TLS certificate (if using TLS/SSL)
 
 ## Installation
 
@@ -24,8 +24,9 @@ These templates provide ready-to-use performance test scenarios for DocumentDB, 
 pip install -r ../requirements.txt
 ```
 
-2. Download the AWS DocumentDB TLS certificate (if using AWS DocumentDB):
+2. Download the TLS certificate (if required):
 ```bash
+# For AWS-hosted DocumentDB, use:
 wget https://truststore.pki.rds.amazonaws.com/global/global-bundle.pem
 ```
 
@@ -42,14 +43,14 @@ cp config/.env.example .env
 Edit the `.env` file with your DocumentDB connection details:
 
 ```env
-DOCDB_HOST=your-cluster.cluster-xxxxx.region.docdb.amazonaws.com
-DOCDB_PORT=27017
+DOCDB_HOST=localhost
+DOCDB_PORT=10260
 DOCDB_USERNAME=your_username
 DOCDB_PASSWORD=your_password
 DOCDB_DATABASE=testdb
 DOCDB_COLLECTION=testcollection
-DOCDB_TLS=true
-DOCDB_TLS_CA_FILE=/path/to/global-bundle.pem
+DOCDB_TLS=false
+DOCDB_TLS_CA_FILE=/path/to/ca-bundle.pem
 ```
 
 ### Locust Configuration
@@ -293,7 +294,7 @@ This generates:
 ## Additional Resources
 
 - [Locust Documentation](https://docs.locust.io/)
-- [AWS DocumentDB Documentation](https://docs.aws.amazon.com/documentdb/)
+- [DocumentDB GitHub](https://github.com/documentdb/documentdb)
 - [PyMongo Documentation](https://pymongo.readthedocs.io/)
 
 ## Contributing

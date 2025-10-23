@@ -16,26 +16,28 @@ pip install -r requirements.txt
 
 ## Step 2: Configure Connection
 
-Create a `.env` file in the `locust_templates` directory:
+Create a `.env` file in the `locust` directory:
 
 ```bash
-cd locust_templates
+cd locust
 cp config/.env.example .env
 ```
 
 Edit `.env` with your DocumentDB credentials:
 
 ```env
-DOCDB_HOST=your-cluster.cluster-xxxxx.region.docdb.amazonaws.com
+DOCDB_HOST=localhost
+DOCDB_PORT=10260
 DOCDB_USERNAME=admin
 DOCDB_PASSWORD=your_password
 DOCDB_DATABASE=testdb
 DOCDB_COLLECTION=testcollection
 ```
 
-## Step 3: Download TLS Certificate (AWS DocumentDB only)
+## Step 3: Download TLS Certificate (if required)
 
 ```bash
+# For AWS-hosted DocumentDB, use:
 wget https://truststore.pki.rds.amazonaws.com/global/global-bundle.pem
 ```
 
@@ -49,14 +51,14 @@ DOCDB_TLS_CA_FILE=/path/to/global-bundle.pem
 ### Option A: Using the Quick Start Script (Recommended)
 
 ```bash
-cd locust_templates
+cd locust
 ./run_test.sh
 ```
 
 ### Option B: Using Locust Directly
 
 ```bash
-cd locust_templates
+cd locust
 locust -f locustfile.py
 ```
 
@@ -136,7 +138,7 @@ After the test completes, you'll see:
 
 ## Next Steps
 
-1. Review the [full documentation](locust_templates/README.md)
+1. Review the [full documentation](locust/README.md)
 2. Customize scenarios for your use case
 3. Use the data generator for realistic test data
 4. Set up distributed testing for higher loads
