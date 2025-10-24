@@ -24,10 +24,10 @@ These templates provide ready-to-use performance test scenarios for DocumentDB, 
 pip install -r ../requirements.txt
 ```
 
-2. Download the TLS certificate (if required):
+2. Configure TLS certificate (if required):
 ```bash
-# For AWS-hosted DocumentDB, use:
-wget https://truststore.pki.rds.amazonaws.com/global/global-bundle.pem
+# If your DocumentDB instance requires TLS, obtain the appropriate CA certificate
+# and configure the path in your .env file
 ```
 
 ## Configuration

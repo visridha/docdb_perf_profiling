@@ -92,10 +92,11 @@ DOCDB_USERNAME=your_username
 DOCDB_PASSWORD=your_password
 ```
 
-3. Download TLS certificate (if required):
+3. Configure TLS certificate (if required):
 ```bash
-# For AWS-hosted DocumentDB, use:
-wget https://truststore.pki.rds.amazonaws.com/global/global-bundle.pem
+# If your DocumentDB instance requires TLS, set the path in .env:
+# DOCDB_TLS=true
+# DOCDB_TLS_CA_FILE=/path/to/your-ca-bundle.pem
 ```
 
 ## Usage Examples

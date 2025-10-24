@@ -34,16 +34,14 @@ DOCDB_DATABASE=testdb
 DOCDB_COLLECTION=testcollection
 ```
 
-## Step 3: Download TLS Certificate (if required)
+## Step 3: Configure TLS (Optional)
 
-```bash
-# For AWS-hosted DocumentDB, use:
-wget https://truststore.pki.rds.amazonaws.com/global/global-bundle.pem
-```
+If your DocumentDB instance requires TLS/SSL:
 
 Update `.env` with the certificate path:
 ```env
-DOCDB_TLS_CA_FILE=/path/to/global-bundle.pem
+DOCDB_TLS=true
+DOCDB_TLS_CA_FILE=/path/to/your-ca-bundle.pem
 ```
 
 ## Step 4: Run Your First Test
