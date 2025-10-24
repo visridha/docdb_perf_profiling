@@ -1,0 +1,7 @@
+# Core dependencies for DocumentDB performance testing
+locust>=2.15.0
+pymongo>=4.5.0
+python-dotenv>=1.0.0
+
+# Optional: For additional monitoring and analysis
+psutil>=5.9.0
